@@ -1,43 +1,48 @@
-#include "console_paint.h"
+﻿#include "console_paint.h"
 
 int main()
 {
-	Canvas canvas = {};
-	init(&canvas, 100, 50, '-');
+    Canvas canvas(100, 50, ' ');
+    Shape* shape;
+    Position position = {74, 34};
+    Line line1(9, 0, '*', position, 1);
+    shape = &line1;
+    canvas.add(shape);
 
-	Position position = { 20, 20 };
-	Line line1 = {};
-	init(&line1, 9, 1, '*', position, 0);
+    position = { 86, 34 };
+    Line line2(9, 0, '*', position, 1);
+    shape = &line2;
+    canvas.add(shape);
 
-	position = { 24, 23 };
-	Line line2 = {};
-	init(&line2, 17, 0, '*', position, 0);
+    position = { 86, 25 };
+    Line line3(9, 1, '*', position, 0);
+    shape = &line3;
+    canvas.add(shape);
 
-	position = {28, 18};
-	Line line3 = {};
-	init(&line3, 9, -1, '*', position, 0);
+    position = { 71, 22 };
+    Line line4(9, -1, '*', position, 0);
+    shape = &line4;
+    canvas.add(shape);
 
-	position = { 40, 27 };
-	Rectangle rectangle = {};
-	init(&rectangle, 6, 4, '6', position);
+    position = {75, 30};
+    Triangle triangle1(9, '0', position);
+    shape = &triangle1;
+    canvas.add(shape);
 
-	position = {40, 20};
-	Triangle triangle = {};
-	init(&triangle, 6, '0', position);
+    position = {40, 10};
+    Circle circle(5, '#', position);
+    shape = &circle;
+    canvas.add(shape);
 
-	position = { 40, 22 };
-	Circle circle = {};
-	init(&circle, 5, '#', position);
+    position = { 30, 20 };
+    Rectangle rectangle(20, 40, '=', position);
+    shape = &rectangle;
+    canvas.add(shape);
 
-	add(&canvas, line1);
-	add(&canvas, line2);
-	add(&canvas, line3);
+    position = { 19, 11 };
+    Triangle triangle(21, '0', position);
+    shape = &triangle;
+    canvas.add(shape);
 
-	add(&canvas, rectangle);
-
-	add(&canvas, triangle);
-
-	add(&canvas, circle);
-
-	display(&canvas);
+    canvas.display();
 }
